@@ -1,0 +1,29 @@
+{
+  "name": "mongo",
+  "version": "1.0.0",
+  "description": "Aplicação ts, mongose, express, mongo",
+  "main": "server/server.ts",
+  "scripts": {
+    "start-ubuntu": "nodemon ./node_modules/.bin/ts-node ./server/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeziel francisco \u001b[1;6D\u001b[1 Francisco da Silva",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "http-status": "^1.0.1",
+    "mongose": "0.0.2-security",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.16.8",
+    "@types/express": "^4.11.1",
+    "@types/http-status": "^0.2.30",
+    "@types/mongoose": "^5.0.6",
+    "@types/morgan": "^1.7.35",
+    "@types/node": "^9.4.6",
+    "ts-node": "^5.0.1",
+    "typescript": "^2.7.2"
+  }
+}
