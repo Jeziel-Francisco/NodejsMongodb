@@ -5,6 +5,7 @@
   "main": "server/server.ts",
   "scripts": {
     "start-ubuntu": "nodemon ./node_modules/.bin/ts-node ./server/server.ts",
+    "start-dev-js": "nodemon ./build/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jeziel francisco \u001b[1;6D\u001b[1 Francisco da Silva",
