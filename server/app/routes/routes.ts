@@ -1,6 +1,6 @@
 import { Application, Response, Request } from "express";
 
-import UserRoutes from './../../modules/controllers/user.routes';
+import UserRoutes from './../../modules/user/user.routes';
 
 
 class Routes {

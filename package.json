@@ -4,7 +4,8 @@
   "description": "Aplicação ts, mongose, express, mongo",
   "main": "server/server.ts",
   "scripts": {
-    "start-ubuntu": "nodemon ./node_modules/.bin/ts-node ./server/server.ts",
+    "start-ubuntu": "NODE_ENV=development nodemon ./node_modules/.bin/ts-node ./server/server.ts",
+    "start-wd": "nodemon ./node_modules/.bin/ts-node ./server/server.ts",
     "start-dev-js": "nodemon ./build/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +15,7 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "http-status": "^1.0.1",
-    "mongose": "0.0.2-security",
+    "mongoose": "^5.0.9",
     "morgan": "^1.9.0"
   },
   "devDependencies": {

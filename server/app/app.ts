@@ -1,5 +1,6 @@
 import { Application } from 'express';
 
+import DataBase from './../config/db';
 import Routes from './routes/routes';
 
 import * as express from 'express';
@@ -16,6 +17,15 @@ class App {
         this.app = express();
         this.middleware(this.app);
         this.routes(this.app);
+        this.dataBaseConnection();
+    }
+
+    dataBaseConnection() {
+        DataBase.createConnection();
+    }
+
+    dataBaseClose(message: string, callback) {
+        DataBase.closeConnection(message, () => callback());
     }
 
     middleware(app: Application) {
