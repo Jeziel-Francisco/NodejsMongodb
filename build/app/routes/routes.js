@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var user_routes_1 = require("./../../modules/controllers/user.routes");
+var user_routes_1 = require("./../../modules/user/user.routes");
 var Routes = /** @class */ (function () {
     function Routes() {
     }

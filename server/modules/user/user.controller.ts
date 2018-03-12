@@ -1,33 +1,30 @@
-import User from './user.repository';
+import { Request, Response } from 'express';
+
+import UserBusiness from './user.business';
+
 
 class UserController {
 
     constructor() { }
 
-    findAll() {
-        return User.find({});
+    findAll(req: Request, res: Response) {
+        UserBusiness.findAll(res);
     }
 
-    findAllById(id: string) {
-        return User.findById(id);
+    findAllById(req: Request, res: Response) {
+        UserBusiness.findAllById(res, req.params.id);
     }
 
-    create(user) {
-        return User.create(user);
+    create(req: Request, res: Response) {
+        UserBusiness.create(res, req.body);
     }
 
-    update(id: string, user) {
-        let userUpdated = {
-            name: user.name,
-            email: user.email,
-            password: user.password
-        };
-
-        return User.update(id, user);
+    update(req: Request, res: Response) {
+        UserBusiness.update(res, req.params.id, req.body);
     }
 
-    delete(id: string) {
-        return User.deleteOne(id);
+    delete(req: Request, res: Response) {
+        UserBusiness.delete(res, req.params.id);
     }
 }
 

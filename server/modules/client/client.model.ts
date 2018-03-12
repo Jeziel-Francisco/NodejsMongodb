@@ -1,0 +1,3 @@
+interface IClient { }
+
+export { IClient };

@@ -2,35 +2,26 @@ import { Request, Response, json } from 'express';
 
 import UserController from './user.controller';
 
-import responseSucess from './../../responses/response.success';
-
-import * as HttpStatus from 'http-status';
-
 class UserRoutes {
 
     findAll(req: Request, res: Response) {
-        UserController.findAll()
-            .then((users: any[]) => responseSucess(res, HttpStatus.OK, users));
+        UserController.findAll(req, res);
     }
 
     findById(req: Request, res: Response) {
-        UserController.findAllById(req.params.id)
-            .then((user) => responseSucess(res, HttpStatus.OK, user));
+        UserController.findAllById(req, res);
     }
 
     create(req: Request, res: Response) {
-        UserController.create(req.body)
-            .then(() => responseSucess(res, HttpStatus.OK, { success: 'Success' }));
+        UserController.create(req, res);
     }
 
     update(req: Request, res: Response) {
-        UserController.update(req.params.id, req.body)
-            .then(() => responseSucess(res, HttpStatus.OK, { success: 'Success' }));
+        UserController.update(req, res);
     }
 
     delete(req: Request, res: Response) {
-        UserController.delete(req.params.id)
-            .then(() => responseSucess(res, HttpStatus.OK, { success: 'Success' }));
+        UserController.delete(req, res);
     }
 }
 
