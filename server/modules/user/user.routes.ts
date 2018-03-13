@@ -20,8 +20,8 @@ class UserRoutes {
         UserController.update(req, res);
     }
 
-    delete(req: Request, res: Response) {
-        UserController.delete(req, res);
+    remove(req: Request, res: Response) {
+        UserController.remove(req, res);
     }
 }
 

@@ -1,5 +1,5 @@
 import UserSchema from './user.schema';
 
-import * as Mongoose from 'mongoose';
+import * as mongoose from 'mongoose';
 
-export default Mongoose.model('User', UserSchema);
+export default mongoose.model('User', UserSchema);

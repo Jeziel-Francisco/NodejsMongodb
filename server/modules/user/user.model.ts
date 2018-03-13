@@ -1,4 +1,4 @@
-import { ForcePassword, IsEmail, IsEqual, IsLength, PropertyExists } from './../common/common.assert';
+import { forcePassword, isEmail, isEqual, isLength, propertyExists } from './../common/common.assert';
 
 interface IUser {
     createdAt: Date;
@@ -12,62 +12,49 @@ interface IUserDetail extends IUser {
     confirmPassword: string;
 }
 
-function FindById(id) {
-    IsLength(id, 24, 24, 'Usuario Nao encontrado');
+function findById(id) {
+    isLength(id, 24, 24, 'Usuario Nao encontrado');
 }
 
-function Create(email: string, firstName: string, lastName: string, password: string, confirmPassword: string) {
+function create(user: IUserDetail) {
 
-    let user = {
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-        password: password,
-        confirmPassword: confirmPassword
-    };
+    propertyExists(['email', 'firstName', 'lastName', 'password', 'confirmPassword'], user);
 
-    PropertyExists(['email', 'firstName', 'lastName', 'password', 'confirmPassword'], user);
+    isEmail(user.email, 'Email Invalido');
 
-    IsEmail(email, 'Email Invalido');
+    isLength(user.firstName, 3, 50, 'Nome deve ter entre 3 e 50 caracteres');
 
-    IsLength(firstName, 3, 50, 'Nome deve ter entre 3 e 50 caracteres');
+    isLength(user.lastName, 3, 50, 'Sobrenome deve conter entre 3 e 50 caracteres');
 
-    IsLength(lastName, 3, 50, 'Sobrenome deve conter entre 3 e 50 caracteres');
-
-    IsLength(password, 8, 1028, 'Senha deve ter no minimo 8 caracteres');
-    IsEqual(password, confirmPassword, 'Senhas Não Conferem');
-    ForcePassword(password, 'Senha não atende aos requistos Minimos');
+    isLength(user.password, 8, 1028, 'Senha deve ter no minimo 8 caracteres');
+    isEqual(user.password, user.confirmPassword, 'Senhas Não Conferem');
+    forcePassword(user.password, 'Senha não atende aos requistos Minimos');
 }
 
-function Update(firstName: string, lastName: string) {
+function update(user: IUser) {
 
-    let userUpdated = {
-        firstName: firstName,
-        lastName: lastName
-    };
+    propertyExists(['firstName', 'lastName'], user);
 
-    PropertyExists(['firstName', 'lastName'], userUpdated);
+    isLength(user.firstName, 3, 50, 'Nome deve ter entre 3 e 50 caracteres');
 
-    IsLength(firstName, 3, 50, 'Nome deve ter entre 3 e 50 caracteres');
-
-    IsLength(lastName, 3, 50, 'Sobrenome deve conter entre 3 e 50 caracteres');
+    isLength(user.lastName, 3, 50, 'Sobrenome deve conter entre 3 e 50 caracteres');
 }
 
-function UpdateEmail(email: string, confirmEmail: string, ) {
-    IsEmail(email, 'Email Invalido');
-    IsEqual(email, confirm, 'Email Não Conferem');
+function updateEmail(email: string, confirmEmail: string ) {
+    isEmail(email, 'Email Invalido');
+    isEqual(email, confirm, 'Email Não Conferem');
 }
 
-function UpdatePassword(password: string, confirmPassword: string) {
-    IsLength(password, 8, 1028, 'Senha deve ter no minimo 8 caracteres');
-    IsEqual(password, confirmPassword, 'Senhas Não Conferem');
-    ForcePassword(password, 'Senha não atende aos requistos Minimos');
+function updatePassword(password: string, confirmPassword: string) {
+    isLength(password, 8, 1028, 'Senha deve ter no minimo 8 caracteres');
+    isEqual(password, confirmPassword, 'Senhas Não Conferem');
+    forcePassword(password, 'Senha não atende aos requistos Minimos');
 }
 
 
-function Delete(id: string) {
-    IsLength(id, 24, 24, 'Usuario Nao encontrado');
+function remove(id: string) {
+    isLength(id, 24, 24, 'Usuario Nao encontrado');
 }
 
 
-export { IUser, IUserDetail, FindById, Create, Update, UpdateEmail, UpdatePassword, Delete };
+export { IUser, IUserDetail, findById, create, update, updateEmail, updatePassword, remove };

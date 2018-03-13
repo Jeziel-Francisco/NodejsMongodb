@@ -23,8 +23,8 @@ class UserController {
         UserBusiness.update(res, req.params.id, req.body);
     }
 
-    delete(req: Request, res: Response) {
-        UserBusiness.delete(res, req.params.id);
+    remove(req: Request, res: Response) {
+        UserBusiness.remove(res, req.params.id);
     }
 }
 

@@ -1,6 +1,6 @@
-import * as Mongoose from 'mongoose';
+import * as mongoose from 'mongoose';
 
-const UserSchema = new Mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now },
     email: { type: String, lowercase: true, unique: true, required: true },
     firstName: { type: String, required: true },

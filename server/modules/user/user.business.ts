@@ -1,11 +1,11 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 
-import { IUser, IUserDetail, FindById, Create, Update, UpdateEmail, UpdatePassword, Delete } from './user.model';
+import { IUser, IUserDetail, findById, create, update, updateEmail, updatePassword, remove } from './user.model';
 
-import UserRepository from './user.repository';
+import UserInfraestructure from './user.infraestructure';
 
-import responseSucess from './../../responses/response.success';
-import responseError from './../../responses/response.error';
+import responseError from './../common/response.error';
+import responseSucess from './../common/response.success';
 
 import * as HttpStatus from 'http-status';
 
@@ -14,61 +14,55 @@ class UserBusiness {
     constructor() { }
 
     findAll(res: Response) {
-        UserRepository.find({})
+        UserInfraestructure.findAll()
             .then((users: any[]) => responseSucess(res, HttpStatus.OK, users))
-            .catch((error) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, error.message));
+            .catch((error) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, error.message || error));
     }
 
     findAllById(res: Response, id: string) {
         try {
-            FindById(id);
+            findById(id);
         } catch (error) {
             responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, { err: error.message });
         }
-        UserRepository.findById(id)
+        UserInfraestructure.findById(id)
             .then((user) => responseSucess(res, HttpStatus.OK, user))
-            .catch((error) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, error.message));
+            .catch((error) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, error.message || error));
     }
 
     create(res: Response, user: IUserDetail) {
         try {
-            Create(user.email, user.firstName, user.lastName, user.password, user.confirmPassword);
+            create(user);
         } catch (error) {
             responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, { err: error.message });
         }
-        UserRepository.create(user)
+        UserInfraestructure.create(user)
             .then((user) => responseSucess(res, HttpStatus.OK, user))
-            .catch((err) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, { err: err.message }));
+            .catch((error) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, { err: error.message || error }));
     }
 
     update(res: Response, id: string, user: IUser) {
 
-        let userUpdated = {
-            firstName: user.firstName,
-            lastName: user.lastName,
-        };
-
         try {
-            Update(userUpdated.firstName, userUpdated.lastName);
+            update(user);
         } catch (error) {
             responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, { err: error.message });
         }
-
-        UserRepository.updateOne({ _id: id }, userUpdated)
+        UserInfraestructure.update(id, { firstName: user.firstName, lastName: user.lastName })
             .then((updated) => responseSucess(res, HttpStatus.OK, updated))
-            .catch((err) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, { err: err.message }));
+            .catch((error) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, { err: error.message || error }));
     }
 
-    delete(res: Response, id: string) {
+    remove(res: Response, id: string) {
         try {
-            Delete(id);
+            remove(id);
         } catch (error) {
             responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, { err: error.message });
         }
 
-        UserRepository.deleteOne({ _id: id })
+        UserInfraestructure.remove(id)
             .then((delected) => responseSucess(res, HttpStatus.OK, delected))
-            .catch((err) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, { err: err.message }));
+            .catch((error) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, { err: error.message || error }));
     }
 }
 
