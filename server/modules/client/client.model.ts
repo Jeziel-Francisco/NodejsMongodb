@@ -3,8 +3,8 @@ import { isLength, propertyExists } from './../common/common.assert';
 interface IClient {
     address: {
         city: string,
-        code: number,
-        number: number,
+        code: string,
+        number: string,
         complement: string,
         neighborhood: string,
         place: string,
@@ -32,9 +32,9 @@ function create(client: IClient) {
 
     isLength(client.address.city, 3, 120, 'Cidade deve conter entre 3 e 120 letras');
 
-    //isLength(client.address.code, 8, 8, 'Cep deve conter 8 numeros');
+    isLength(client.address.code, 8, 8, 'Cep deve conter 8 numeros');
 
-    //isLength(client.address.number, 1, 10, 'Number deve conter entre 1 e 10 numeros');
+    isLength(client.address.number, 1, 10, 'Number deve conter entre 1 e 10 numeros');
 
     isLength(client.address.complement, 3, 120, 'Complemento deve conter entre 3 e 120 letras');
 
@@ -52,7 +52,7 @@ function create(client: IClient) {
 
     client.phone.forEach((phone, index) => {
         propertyExists(['ddd', 'number'], phone);
-        //isLength(phone.ddd, 2, 3, 'DDD deve conter entre 2 e 3 Numberos');
+        isLength(phone.ddd, 2, 3, 'DDD deve conter entre 2 e 3 Numberos');
         isLength(phone.number, 8, 9, 'Telefone deve conter entre 8 e 9 Numbros');
     });
 

@@ -4,8 +4,8 @@ import { IUser, IUserDetail, findById, create, update, updateEmail, updatePasswo
 
 import UserInfraestructure from './user.infraestructure';
 
-import responseError from './../common/response.error';
-import responseSucess from './../common/response.success';
+import responseError from './../common/common.response.error';
+import responseSucess from './../common/common.response.success';
 
 import * as HttpStatus from 'http-status';
 

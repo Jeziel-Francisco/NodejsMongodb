@@ -4,8 +4,8 @@ import { findById, create, remove, update, IClient } from './client.model';
 
 import ClientInfraestructure from './client.infraestructure';
 
-import responseError from './../common/response.error';
-import responseSucess from './../common/response.success';
+import responseError from './../common/common.response.error';
+import responseSuccess from './../common/common.response.success';
 
 import * as HttpStatus from 'http-status';
 
@@ -16,7 +16,7 @@ class ClientBusiness {
 
     findAll(res: Response) {
         ClientInfraestructure.findAll()
-            .then((clients: any[]) => responseSucess(res, HttpStatus.OK, clients))
+            .then((clients: any[]) => responseSuccess(res, HttpStatus.OK, clients))
             .catch((error) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, error.message || error));
     }
 
@@ -28,7 +28,7 @@ class ClientBusiness {
         }
 
         ClientInfraestructure.findById(id)
-            .then((client: any) => responseSucess(res, HttpStatus.OK, client))
+            .then((client: any) => responseSuccess(res, HttpStatus.OK, client))
             .catch((error) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, error.message || error));
     }
 
@@ -40,7 +40,7 @@ class ClientBusiness {
         }
 
         ClientInfraestructure.create(client)
-            .then((created) => responseSucess(res, HttpStatus.CREATED, created))
+            .then((created) => responseSuccess(res, HttpStatus.CREATED, created))
             .catch((error) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, error.message || error));
     }
 
@@ -52,7 +52,7 @@ class ClientBusiness {
         }
 
         ClientInfraestructure.update(id, client)
-            .then((updated) => responseSucess(res, HttpStatus.OK, updated))
+            .then((updated) => responseSuccess(res, HttpStatus.OK, updated))
             .catch((error) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, error.message || error));
     }
 
@@ -64,7 +64,7 @@ class ClientBusiness {
         }
 
         ClientInfraestructure.remove(id)
-            .then((deleted) => responseSucess(res, HttpStatus.OK, deleted))
+            .then((deleted) => responseSuccess(res, HttpStatus.OK, deleted))
             .catch((error) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, error.message || error));
     }
 

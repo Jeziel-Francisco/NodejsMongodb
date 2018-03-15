@@ -16,15 +16,16 @@ class ClientInfraestructure {
     }
 
     create(client: IClient) {
-        return ClientRepository.create(client);
+        return new ClientRepository(client).save();
+        //return ClientRepository.create(client);
     }
 
     update(id: string, client: IClient) {
-        return ClientRepository.findByIdAndUpdate(id, client);
+        return ClientRepository.update({ _id: id }, client);
     }
 
     remove(id: string) {
-        return ClientRepository.findByIdAndRemove(id);
+        return ClientRepository.remove({ _id: id });
     }
 }
 

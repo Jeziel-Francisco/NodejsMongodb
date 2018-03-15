@@ -19,11 +19,11 @@ class UserInfraestructure {
     }
 
     update(id: string, user: any) {
-        return UserRepository.findByIdAndUpdate(id, user);
+        return UserRepository.update({ _id: id }, user);
     }
 
     remove(id: string) {
-        return UserRepository.findByIdAndRemove(id);
+        return UserRepository.remove({ _id: id });
     }
 
 }
