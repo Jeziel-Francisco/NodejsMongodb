@@ -1,4 +1,4 @@
-import ClientSchema from './client.schema';
+import ClientSchema from './../../entities/documents/client.schema';
 
 import * as mongoose from 'mongoose';
 

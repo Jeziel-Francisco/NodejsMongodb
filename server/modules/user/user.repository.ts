@@ -1,4 +1,4 @@
-import UserSchema from './user.schema';
+import UserSchema from './../../entities/documents/user.schema';
 
 import * as mongoose from 'mongoose';
 

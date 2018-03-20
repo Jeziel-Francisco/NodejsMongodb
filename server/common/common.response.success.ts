@@ -1,6 +1,6 @@
 import { Response } from 'express';
 
-function responseSucess(res: Response, statusCode, data) {
+const responseSucess = (res: Response, statusCode, data) => {
     res.status(statusCode).json(data);
 }
 

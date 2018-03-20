@@ -1,4 +1,4 @@
-import { IClient } from './client.model';
+import { IClient } from './../../entities/model/client.model';
 
 import ClientRepository from './client.repository';
 

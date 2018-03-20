@@ -1,4 +1,4 @@
-import { isLength, propertyExists } from './../common/common.assert';
+import { isLength, propertyExists } from './../../common/common.assert';
 
 interface IClient {
     address: {
@@ -23,11 +23,11 @@ interface IClient {
 
 }
 
-function findById(id: string) {
+const findById = (id: string) => {
     isLength(id, 24, 24, 'Usuario não encontrado');
 }
 
-function create(client: IClient) {
+const create = (client: IClient) => {
     propertyExists(['firstName', 'identification', 'lastName'], client);
 
     isLength(client.address.city, 3, 120, 'Cidade deve conter entre 3 e 120 letras');
@@ -59,12 +59,12 @@ function create(client: IClient) {
     isLength(client.registration, 5, 9, 'Inscrição estadual deve Conter entre 5 e 9 Numeros');
 }
 
-function update(id: string, client: IClient) {
+const update = (id: string, client: IClient) => {
     isLength(id, 24, 24, 'Cliente não encontrado');
     create(client);
 }
 
-function remove(id: string) {
+const remove = (id: string) => {
     isLength(id, 24, 24, 'Cliente não encontrado');
 }
 

@@ -1,4 +1,4 @@
-import { forcePassword, isEmail, isEqual, isLength, propertyExists } from './../common/common.assert';
+import { forcePassword, isEmail, isEqual, isLength, propertyExists } from './../../common/common.assert';
 
 interface IUser {
     createdAt: Date;
@@ -12,11 +12,11 @@ interface IUserDetail extends IUser {
     confirmPassword: string;
 }
 
-function findById(id) {
+const findById = (id) => {
     isLength(id, 24, 24, 'Usuario Nao encontrado');
 }
 
-function create(user: IUserDetail) {
+const create = (user: IUserDetail) => {
 
     propertyExists(['email', 'firstName', 'lastName', 'password', 'confirmPassword'], user);
 
@@ -31,7 +31,7 @@ function create(user: IUserDetail) {
     forcePassword(user.password, 'Senha não atende aos requistos Minimos');
 }
 
-function update(user: IUser) {
+const update = (user: IUser) => {
 
     propertyExists(['firstName', 'lastName'], user);
 
@@ -40,19 +40,19 @@ function update(user: IUser) {
     isLength(user.lastName, 3, 50, 'Sobrenome deve conter entre 3 e 50 caracteres');
 }
 
-function updateEmail(email: string, confirmEmail: string ) {
+const updateEmail = (email: string, confirmEmail: string) => {
     isEmail(email, 'Email Invalido');
     isEqual(email, confirm, 'Email Não Conferem');
 }
 
-function updatePassword(password: string, confirmPassword: string) {
+const updatePassword = (password: string, confirmPassword: string) => {
     isLength(password, 8, 1028, 'Senha deve ter no minimo 8 caracteres');
     isEqual(password, confirmPassword, 'Senhas Não Conferem');
     forcePassword(password, 'Senha não atende aos requistos Minimos');
 }
 
 
-function remove(id: string) {
+const remove = (id: string) => {
     isLength(id, 24, 24, 'Usuario Nao encontrado');
 }
 
