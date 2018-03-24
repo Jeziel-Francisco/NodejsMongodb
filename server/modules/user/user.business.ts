@@ -30,7 +30,7 @@ class UserBusiness {
     create(res: Response, user: IUserDetail) {
 
         UserInfraestructure.create(user)
-            .then((user) => responseSucess(res, HttpStatus.OK, user))
+            .then((created) => responseSucess(res, HttpStatus.OK, created))
             .catch((error) => responseError(res, HttpStatus.INTERNAL_SERVER_ERROR, { err: error.message || error }));
     }
 

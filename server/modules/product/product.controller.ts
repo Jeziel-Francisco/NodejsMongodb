@@ -1,18 +1,13 @@
 import { Request, Response } from 'express';
 
-import UserBusiness from './user.business';
+import UserBusiness from './product.business';
 
-
-class UserController {
+class ProductController {
 
     constructor() { }
 
     findAll(req: Request, res: Response) {
         UserBusiness.findAll(res);
-    }
-
-    findById(req: Request, res: Response) {
-        UserBusiness.findAllById(res, req.params.id);
     }
 
     create(req: Request, res: Response) {
@@ -24,8 +19,10 @@ class UserController {
     }
 
     remove(req: Request, res: Response) {
+        console.log(req.params.id);
         UserBusiness.remove(res, req.params.id);
     }
+
 }
 
-export default new UserController();
+export default new ProductController();

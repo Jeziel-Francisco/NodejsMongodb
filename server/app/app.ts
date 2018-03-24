@@ -2,12 +2,14 @@ import { Application } from 'express';
 
 import DataBase from './../config/db';
 import Routes from './routes/routes';
+import authConfig from './../auth';
 
 import * as express from 'express';
 import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';
 
 class App {
+    public auth;
 
     public app: Application;
     private morgan: morgan.Morgan;
@@ -15,8 +17,9 @@ class App {
 
     constructor() {
         this.app = express();
+        this.auth = authConfig();
         this.middleware(this.app);
-        this.routes(this.app);
+        this.routes(this.app, this.auth);
         this.dataBaseConnection();
     }
 
@@ -32,10 +35,11 @@ class App {
         this.app.use(morgan('dev'));
         this.app.use(bodyParser.urlencoded({ extended: true }))
         this.app.use(bodyParser.json());
+        this.app.use(this.auth.inicialize());
     }
 
-    routes(app: Application) {
-        Routes.getRoutes(app);
+    routes(app: Application, auth: any) {
+        Routes.getRoutes(app, auth);
     }
 
 }

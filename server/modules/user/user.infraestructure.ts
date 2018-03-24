@@ -14,6 +14,10 @@ class UserInfraestructure {
         return UserRepository.findById(id);
     }
 
+    findByEmail(email: string) {
+        return UserRepository.findOne({ email: email });
+    }
+
     create(user: IUserDetail) {
         return UserRepository.create(user);
     }
