@@ -1,24 +1,12 @@
 import { isLength, propertyExists } from './../../common/common.assert';
 
 interface IClient {
-    address: {
-        city: string,
-        code: string,
-        number: string,
-        complement: string,
-        neighborhood: string,
-        place: string,
-        state: string
-    };
+    address: { city: string, code: string, number: string, complement: string, neighborhood: string, place: string, state: string };
     createdAt: Date;
     firstName: string;
     identification: string,
     lastName: string;
-    phone: [{
-        contact: string,
-        ddd: number,
-        number: number
-    }];
+    phone: [{ contact: string, ddd: number, number: number }];
     registration: string;
 
 }
